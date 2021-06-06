@@ -21,7 +21,6 @@ export default function EditSample() {
     };
 
     const handleGetSample = () => {
-        console.log(id);
         axios.get(`/api/get-sample/${id}`)
             .then((res) => {
                 setInputs(
@@ -36,7 +35,6 @@ export default function EditSample() {
     };
 
     const handleSaveSample = (id, name, amount, isAvailable) => {
-        console.log(id, name, amount, isAvailable);
         axios.put(`/api/save-sample/${id}`,
             {
                 name: name,

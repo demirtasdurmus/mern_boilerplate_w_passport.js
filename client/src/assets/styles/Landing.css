@@ -22,8 +22,10 @@ body {
 }
 
 .Mongo-logo {
+  margin-left: 5%;
+  margin-right: 6%;
   animation: App-logo-spin infinite 20s linear;
-  height: 10vmin;
+  height: 9vmin;
   pointer-events: none;
 }
 

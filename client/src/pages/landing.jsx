@@ -11,7 +11,7 @@ export default function Landing() {
         <div>
             <Navbar />
             <div className="Landing">
-                <h2>A comprehensive, ready-to-use MongoDb-Express-React-Node Boilerplate</h2>
+                <h2>A comprehensive, ready-to-use MongoDB-Express-React-Node Boilerplate</h2>
                 <header className="Landing-header">
                     <img src={ReactLogo} className="React-logo" alt="logo" />
                     <img src={NodeLogo} className="Node-logo" alt="logo" />
