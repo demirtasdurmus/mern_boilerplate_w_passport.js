@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd apiserver && npm start\" \"cd client && npm start\" "
+    "start": "concurrently \"cd apiserver && npm start\" \"cd client && npm start\" "
   },
   "repository": {
     "type": "git",
