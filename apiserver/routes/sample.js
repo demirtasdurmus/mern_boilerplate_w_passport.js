@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const  Sample = require("../db/models/sample")
+const Sample = require("../db/models/sample")
 
 
 router.get("/list-samples", async (req, res, next) => {
@@ -14,8 +14,14 @@ router.get("/list-samples", async (req, res, next) => {
 
 router.post("/add-sample", async (req, res, next) => {
   try {
-    const {name, amount, is_available} = req.body;
-    const sample = new Sample(req.body);
+    const { name, amount, is_available } = req.body;
+    const sample = new Sample(
+      {
+        name: name, 
+        amount: amount, 
+        is_available: is_available
+      }
+    );
     await sample.save();
     res.send("success")
   } catch (err) {
@@ -36,7 +42,7 @@ router.get("/get-sample/:id", async (req, res, next) => {
 router.put("/save-sample/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    await Sample.findByIdAndUpdate(id, req.body, { runValidators: true, new:true, useFindAndModify:false });
+    await Sample.findByIdAndUpdate(id, req.body, { runValidators: true, new: true, useFindAndModify: false });
     res.send(true);
   } catch (err) {
     console.log(err);

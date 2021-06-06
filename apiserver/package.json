@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prestart": "start  \"mongoServer\" \"c:Program Files/MongoDB/Server/4.4/bin/mongod.exe\"",
-    "start": "nodemon index.js"
+    "dev": "start \"mongoServer\" \"c:Program Files/MongoDB/Server/4.4/bin/mongod.exe\" && nodemon index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

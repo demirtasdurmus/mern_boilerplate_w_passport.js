@@ -62,7 +62,7 @@ export default function Sample() {
     <div>
       <Navbar />
       <div className="mx-5">
-        <h3 className="text-center mt-5">A page displaying full CRUD opertaions</h3>
+        <h3 className="text-center mt-5">A page displaying full CRUD operations</h3>
         <div className="row">
           <div className="col-4">
             <AddSamples

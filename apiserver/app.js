@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cors = require("cors");
 
 var app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 
 //connecting mongoose**********************************
 mongoose.connect("mongodb://localhost:27017/mern_boilerplate", {
@@ -29,6 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../client/build')));
 

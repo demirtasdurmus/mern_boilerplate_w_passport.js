@@ -7,7 +7,7 @@ export default function AddSample({ handleInputChange, name, amount, isAvailable
     }, [])
     return (
         <div className="container pt-5">
-            <h3 className="text-center">You can add samples here!</h3>
+            <h3 className="text-center">You can <span className="text-danger">Create</span> samples here!</h3>
             <div className="mb-2">
                 <label class="from-label" for="name">Name</label>
                 <input
