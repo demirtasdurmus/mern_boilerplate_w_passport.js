@@ -28,9 +28,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.use("/api", require("./api"))
 
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
 
 // Always return the main index.html, so react-router render the route in the client
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "/../client/build", "index.html"));
 });
 
 // error handler
@@ -52,7 +53,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;
