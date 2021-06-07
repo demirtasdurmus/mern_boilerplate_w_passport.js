@@ -4,6 +4,7 @@
 /node_modules
 /apiserver/node_modules
 /client/node_modules
+
 /.vscode
 /.pnp
 .pnp.js
@@ -12,7 +13,7 @@
 /coverage
 
 # production
-/build
+/client/build
 
 # misc
 .DS_Store
