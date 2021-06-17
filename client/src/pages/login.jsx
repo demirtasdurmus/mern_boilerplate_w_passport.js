@@ -17,19 +17,19 @@ export default function Login() {
     };
 
     const handleLoginUser = (email, password) => {
-        console.log(email, password);
         axios.post("/api/users/login",
             {
                 email: email,
                 password: password
             })
             .then((res) => {
-                console.log(res.data)
-                // if (res.data === true) {
-                //     const history = createBrowserHistory();
-                //     history.push('/sample');
-                //     window.location.reload();
-                // }
+                console.log(res)
+                if (res.data === true) {
+                    // const history = createBrowserHistory();
+                    // history.push('/sample');
+                    // window.location.reload();
+                    window.location.assign('/secret')
+                }
             })
     };
 

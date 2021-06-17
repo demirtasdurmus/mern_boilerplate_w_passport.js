@@ -6,7 +6,6 @@ import Navbar from "../components/navbar";
 
 export default function Register() {
     const [inputs, setInputs] = useState({
-        name: "",
         email: "",
         password: ""
     });
@@ -17,11 +16,9 @@ export default function Register() {
         setInputs({ ...inputs, [name]: value });
     };
 
-    const handleRegisterUser = (name, email, password) => {
-        console.log(name, email, password);
+    const handleRegisterUser = (email, password) => {
         axios.post("/api/users/register",
             {
-                name: name,
                 email: email,
                 password: password
             })
@@ -47,18 +44,6 @@ export default function Register() {
 
             <div className="container pt-4 d-flex justify-content-center">
                 <div className="col-4">
-                    <div className="mb-2">
-                        <label class="from-label" for="name">Name</label>
-                        <input
-                            className="form-control"
-                            onChange={handleInputChange}
-                            value={inputs.name}
-                            name="name"
-                            id="name"
-                            type="text"
-                            placeholder="name"
-                        />
-                    </div>
                     <div className="mb-2">
                         <label class="from-label" for="email">Email</label>
                         <input
@@ -86,7 +71,7 @@ export default function Register() {
                     <button
                         className="btn btn-primary"
                         type="submit"
-                        onClick={() => handleRegisterUser(inputs.name, inputs.email, inputs.password)}
+                        onClick={() => handleRegisterUser(inputs.email, inputs.password)}
                     >
                         Register
                     </button>

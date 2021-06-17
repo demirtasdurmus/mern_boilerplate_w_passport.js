@@ -4,6 +4,7 @@ import Sample from "./pages/sample";
 import EditSample from "./pages/editSample";
 import Register from "./pages/register";
 import Login from "./pages/login";
+import SecretPage from './pages/secretPage';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/edit-sample/:id" exact={true} component={EditSample} />
           <Route path="/register" exact={true} component={Register} />
           <Route path="/login" exact={true} component={Login} />
+          <Route path="/secret" exact={true} component={SecretPage} />
         </Switch>
       </BrowserRouter>
     </div>

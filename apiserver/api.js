@@ -3,6 +3,6 @@ var sampleRouter = require('./routes/sample');
 var userRouter = require('./routes/users');
 
 api.use('/', sampleRouter);
-api.use('/user', userRouter);
+api.use('/users', userRouter);
 
-module.exports=api;
+module.exports = api;

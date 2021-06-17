@@ -1,12 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 const bodyParser = require('body-parser');
-var path = require('path');
-const mongoose = require ("mongoose");
-var logger = require('morgan');
-var cors = require("cors");
+const path = require('path');
+const logger = require('morgan');
+const cors = require("cors");
+const mongoose = require("mongoose");
+const passport = require('passport');
 
-var app = express();
+const app = express();
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 //connecting mongoose**********************************
@@ -23,11 +24,16 @@ db.once("open", () => {
   console.log("Connected to mongoDB database");
 });
 
-// app.use(
-//   logger(
-//     ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'
-//   )
-// );
+//Passport.js initialization and configuration********************
+app.use(passport.initialize());
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 app.use(logger('dev'));
 app.use(express.json());

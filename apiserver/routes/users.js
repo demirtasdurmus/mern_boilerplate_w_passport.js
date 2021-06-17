@@ -1,56 +1,59 @@
 const express = require('express');
 const router = express.Router();
-const  Sample = require("../db/models/sample")
+const User = require("../db/models/user");
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
 
+// Decalaring Local Strategies***************************
+passport.use('register', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+},
+  function (req, res, email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { return done(err); }
+      if (user) {
+        return done(null, false, { message: 'Email is already taken...' });
+      } else {
+        var newUser = new User();
+        newUser.email = email;
+        newUser.password = newUser.generateHash(password);
+        newUser.save(function (err) {
+          if (err) throw err;
+          return done(null, newUser);
+        });
+      }
+    });
+  }));
 
-router.get("/list-samples", async (req, res, next) => {
-  try {
-    const samples = await Sample.find({})
-    res.send(samples);
-  } catch (err) {
-    console.log(err);
+passport.use('login', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+},
+  function (req, email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Unknown user' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password !' });
+      }
+      return done(null, user);
+    });
   }
-})
+));
 
-router.post("/add-sample", async (req, res, next) => {
-  try {
-    const {name, amount, is_available} = req.body;
-    const sample = new Sample(req.body);
-    await sample.save();
-    res.send("success")
-  } catch (err) {
-    console.log(err);
-  }
-})
 
-router.get("/get-sample/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const sample = await Sample.findById(id)
-    res.send(sample);
-  } catch (err) {
-    console.log(err);
-  }
-})
+router.post("/register", passport.authenticate('register', { failureRedirect: '/register' }), (req, res, next) => {
+  res.send(true)
+});
 
-router.put("/save-sample/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    await Sample.findByIdAndUpdate(id, req.body, { runValidators: true, new:true, useFindAndModify:false });
-    res.send(true);
-  } catch (err) {
-    console.log(err);
-  }
-})
+router.post("/login", passport.authenticate('login', { failureRedirect: '/login' }), (req, res, next) => {
+  res.send(true)
+});
 
-router.delete("/delete-sample/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    await Sample.findByIdAndDelete(id);
-    res.send(true)
-  } catch (err) {
-    console.log(err);
-  }
-})
 
 module.exports = router;
