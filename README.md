@@ -17,7 +17,7 @@ A comprehensive, ready-to-use MongoDB-Express-React-Node Boilerplate
 
 #cd over apiserver and open package.json file
 
-#find "dev": "start \"mongoServer\" \"c:Program Files/MongoDB/Server/4.4/bin/mongod.exe\" && nodemon index.js" this line inside scripts section and change the MongoDb file path(it is the path where your MongoDB lives in)
+#find "dev": "start \"mongoServer\" \"c:Program Files/MongoDB/Server/4.4/bin/mongod.exe\" && nodemon index.js" line inside scripts section and change the MongoDb file path(it is the path where your MongoDB lives in)
 
 #cd over the root and run the project with "npm run dev" for development
 
